@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+            fontFamily: {
+                raleway: "Raleway"
+      },
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+   
+    
+  </style>
+</head>
+<body class="bg-gray-100">
+  <div id="firstsec" class="container mx-auto p-10">
+    <div class="flex justify-evenly w-full">
+      <a href="#" class="block max-w-full w-80 justify-evenly p-6 bg-orange-500 flex-col border border-gray-200 rounded-lg shadow hover:bg-gray-50 dark:bg-orange-500 dark:bg-orange-500 dark:hover:bg-orange-400">
+        <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">0</p>
+        <p class="font-normal text-gray-900 dark:text-gray-800">Units Sold</p>
+      </a>
+      <a href="#" class="block max-w-full w-80 justify-evenly p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-50 dark:bg-orange-500 dark:bg-orange-500 dark:hover:bg-orange-400">
+        <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">₹ 0</p>
+        <p class="font-normal text-gray-700 dark:text-gray-800">Sales</p>
+      </a>
+      <a href="#" class="block max-w-full w-80 justify-evenly p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-50 dark:bg-orange-500 dark:bg-orange-500 dark:hover:bg-orange-400">
+        <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">0</p>
+        <p class="font-normal text-gray-700 dark:text-gray-800">New Orders</p>
+      </a>
+      <a href="#" class="block z-10 max-w-full w-80 justify-evenly p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-50 dark:bg-orange-500 dark:bg-orange-500 dark:hover:bg-orange-400">
+        <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">10</p>
+        <p class="font-normal text-gray-700 dark:text-gray-800">Active Listings</p>
+      </a>
+    </div>
+    <div>
+        <p class="font-normal leading-none opacity-70 text-center text-5xl p-6 text-black">Sales <span class="text-orange-500">Chart</span></p>
+
+        <canvas id="myChart" class="h-80%"></canvas>
+    </div>
+
+<script>
+const xValues = ["Sun","Mon","Tue","Wed","Thus","Fri","Sat",];
+const yValues = [7,8,8,9,9,9,10,];
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {min: 6, max:10}}],
+    }
+  }
+});
+</script>
+
+    <div class="mt-10">
+      <p class="font-normal leading-none opacity-70 text-center text-5xl p-6 text-black">Recent <span class="text-orange-500">Orders</span></p>
+      <div class="overflow-scroll w-full">
+        <table class="table-auto w-full min-w-max text-center">
+          <thead>
+            <tr>
+              <th class="border-b border-blue-gray-100 bg-blue-gray-50 p-4">Order id</th>
+              <th class="border-b border-blue-gray-100 bg-blue-gray-50 p-4">Name</th>
+              <th class="border-b border-blue-gray-100 bg-blue-gray-50 p-4">Date</th>
+              <th class="border-b border-blue-gray-100 bg-blue-gray-50 p-4">Total Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="even:bg-blue-gray-50/50">
+              <td class="p-4">1234</td>
+              <td class="p-4">xyz</td>
+              <td class="p-4">30/2/2024</td>
+              <td class="p-4">49₹</td>
+            </tr>
+            <tr class="even:bg-blue-gray-50/50">
+              <td class="p-4">1234</td>
+              <td class="p-4">xyz</td>
+              <td class="p-4">30/2/2024</td>
+              <td class="p-4">49₹</td>
+            </tr>
+            <tr class="even:bg-blue-gray-50/50">
+              <td class="p-4">1234</td>
+              <td class="p-4">xyz</td>
+              <td class="p-4">30/2/2024</td>
+              <td class="p-4">49₹</td>
+            </tr>
+            <tr class="even:bg-blue-gray-50/50">
+              <td class="p-4">1234</td>
+              <td class="p-4">xyz</td>
+              <td class="p-4">30/2/2024</td>
+              <td class="p-4">49₹</td>
+            </tr>
+            <tr class="even:bg-blue-gray-50/50">
+              <td class="p-4">1234</td>
+              <td class="p-4">xyz</td>
+              <td class="p-4">30/2/2024</td>
+              <td class="p-4">49₹</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="chartContainer" class="mt-10">
+      <!-- Line Chart will be rendered here -->
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/recharts/2.0.10/recharts.min.js"></script>
+  <script>
+    const data = [
+      { name: "Mon", Sales: 590, Orders: 900, amt: 1400 },
+      { name: "Tue", Sales: 868, Orders: 967, amt: 1506 },
+      { name: "Wed", Sales: 397, Orders: 1000, amt: 989 },
+      { name: "Thus", Sales: 480, Orders: 900, amt: 1228 },
+      { name: "Fri", Sales: 520, Orders: 1108, amt: 1100 },
+      { name: "Sat", Sales: 400, Orders: 680, amt: 1700 },
+      { name: "Sun", Sales: 500, Orders: 700, amt: 1500 }
+    ];
+
+    // Create the line chart
+    var chart = new Recharts.LineChart({
+      el: document.getElementById("chartContainer"),
+      data: data,
+      xKey: "name",
+      yKeys: ["Sales", "Orders"],
+      colors: ["#82ca9d", "#8884d8"],
+      width: 800,
+      height: 400,
+      margin: { top: 5, right: 30, left: 20, bottom: 5 },
+      tooltip: true,
+      legend: true
+    });
+    chart.render();
+  </script>
+</body>
+</html>

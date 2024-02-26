@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigation</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+              fontFamily: {
+                  raleway: "Raleway"
+        },
+            colors: {
+              clifford: '#da373d',
+            }
+          }
+        }
+      }
+    </script></head>
+
+<body class="bg-gray-100">
+
+    <div class="p-10 mx-auto">
+        <h2 style="color: orange;" class="text-3xl mb-4 text-orange-500">Add Product</h2>
+        <form id="newProductForm" class="space-y-4">
+            
+            <div class="mb-4">
+                <label for="productName" class="block text-sm font-medium text-gray-700">Product Name</label>
+                <input type="text" id="productName" name="productName"
+                    class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue focus:border-blue">
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                <textarea id="description" name="description"
+                    class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue focus:border-blue"
+                    rows="3"></textarea>
+            </div>
+            <div class="mb-4">
+                <label>Stock</label>
+                <input type="number" id="stock" name="stock"
+                    class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue focus:border-blue">
+            </div>
+            <div class="mb-4">
+                <label for="maincategory" class="block">Main Category</label>
+                <select id="maincategory" name="maincategory"
+                    class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue focus:border-blue">
+                    <option value="">Select Main Category</option>
+                    <option value="Screw">Latina</option>
+                    <option value="Hooks">Blonde</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="category" class="block">Category</label>
+                <select id="category" name="category"
+                    class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue focus:border-blue">
+                    <option value="">Select Category</option>
+                    <option value="latina">Latina</option>
+                    <option value="blonde">Blonde</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="subCategory" class="block">Sub Category</label>
+                <select id="subCategory" name="subCategory"
+                    class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue focus:border-blue">
+                    <option value="">Select Sub Category</option>
+                    <option value="">S1</option>
+                    <option value="">S2</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label>Sku Code</label>
+                <input type="number" id="Size" name="Size"
+                    class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue focus:border-blue">
+            </div>
+            <div class="mt-4">
+                <label>Status</label>
+                <select name="status"
+                class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue focus:border-blue">
+                <option value="Active">Select</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+            </div>
+            <div class="pt-4">
+                <label>Upload Product Icon</label>
+                <input type="file" id="productIcon" name="productIcon" onchange="loadFile(event)"
+                    class="block w-full border-gray-300 p-1 pl-1 bg-white rounded-md shadow-sm focus:ring-blue focus:border-blue">
+            </div>
+
+
+<div class="max-w-full mx-auto">
+
+    <!-- Modal toggle -->
+    <button style="background-color: orange;" class="block text-white font-medium bg-orange-500 hover:bg-orange-400 rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-500 dark:hover:orange-500 dark:focus:orange-500" type="button" data-modal-toggle="default-modal">
+    Add Finish
+    </button>
+
+    <!-- Main modal -->
+    <div id="default-modal" data-modal-show="false" aria-hidden="true" class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
+        <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
+            <!-- Modal content -->
+            <div class="bg-white rounded-lg shadow relative dark:bg-gray-200">
+                <!-- Modal header -->
+                <div class="flex items-start justify-between p-5 border-b rounded-t font-medium dark:border-gray-600">
+                    <h3 class="text-gray-900 text-xl lg:text-2xl font-semibold dark:text-white">
+                        Add Finish
+                    </h3>
+                    <button type="button" style="background-color: orange;" class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="default-modal">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="mt-4 p-6">
+                    <label>Finish</label>
+                    <select name="finish" id="finish"
+                    class="mt-1 p-1 h-8 block bg-gray-100 w-full border-gray-300 rounded-md shadow-sm focus:ring-blue focus:border-blue">
+                    <option value="Black">Black</option>
+                        <option value="White">White</option>
+                        <option value="SS">SS</option>
+                    </select>
+                </div>
+                <div class="p-6 pt-0">
+                    <label>Upload Product Photos</label>
+                    <input type="file" id="productPhotos" name="productPhotos" multiple
+                        class="block w-full border-gray-100 p-1 pl-1 bg-white rounded-md shadow-sm focus:ring-blue focus:border-blue">
+                </div>
+                <!-- Modal footer -->
+                <div class="flex space-x-2 items-center p-6 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button style="background-color: orange;" data-modal-toggle="default-modal" type="button" class="text-white orange-500 hover:bg-orange-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-500 dark:hover:orange-500 dark:focus:orange-500">Done</button>
+                    <button data-modal-toggle="default-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600">Cancle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://unpkg.com/flowbite@1.4.4/dist/flowbite.js"></script>
+
+            <div class="grid grid-rows-1 grid-flow-col gap-4">
+                <div class="mb-4">
+                    <label>Size</label>
+                    <input type="text" id="Size" name="Size"
+                        class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue focus:border-blue">
+                </div>
+                <div class="mb-4">
+                    <label>Quantity</label>
+                    <input type="number" id="quantity" name="quantity"
+                        class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue focus:border-blue">
+                </div>
+              </div>
+              <div class="grid grid-rows-1 grid-flow-col gap-4">
+                <div class="mb-4">
+                    <label>Go-Down Number</label>
+                    <input type="number" id="godown" name="godown"
+                        class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue focus:border-blue">
+                </div>
+                <div class="mb-4">
+                    <label>Room Number</label>
+                    <input type="number" id="room" name="room"
+                        class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue focus:border-blue">
+                </div>
+                <div class="mb-4">
+                    <label>Rack Number</label>
+                    <input type="number" id="rack" name="rack"
+                        class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue focus:border-blue">
+                </div>
+              </div>
+            
+            <button type="button" id="addProductBtn"
+            style="background-color: orange;" class="inline-block px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-400">Add
+                Product</button>
+        </form>
+
+        <div id="savedProducts" class="mt-8">
+            <h2 class="text-2xl font-bold mb-4">Saved Products</h2>
+            <ul class="space-y-4">
+            </ul>
+        </div>
+    </div>
+    <script>
+        var loadFile = function(event) {
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+    
+        document.addEventListener("DOMContentLoaded", function() {
+            const newProductForm = document.getElementById('newProductForm');
+            const savedProductsList = document.getElementById('savedProducts');
+            const addProductBtn = document.getElementById('addProductBtn');
+    
+            addProductBtn.addEventListener('click', function() {
+                const formData = new FormData(newProductForm);
+                const product = {};
+                formData.forEach((value, key) => {
+                    product[key] = value;
+                });
+    
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                        <hr class="h-2 bg-slate-100 rounded-md">
+                        <p>Product name: ${product.productName}</p>
+                        <p>Product Description: ${product.description}</p>
+                        <p>Product Stock: ${product.stock}</p>
+                        <p>Product Main Category: ${product.maincategory}</p>
+                        <p>Product Category: ${product.category}</p>
+                        <p>Product Sub Category: ${product.subCategory}</p>
+                        <p>Product Sku code: ${product.Size}</p>
+                        <p>Product Status: ${product.status}</p>                    
+                        <p>Product Icon: <img src="${URL.createObjectURL(document.getElementById('productIcon').files[0])}" alt="Product Icon" style="max-width:100px;"></p>
+                        <p>Product Photos:</p>
+                        <div class="flex flex-wrap">
+                            ${Array.from(document.getElementById('productPhotos').files).map(file => `<img src="${URL.createObjectURL(file)}" alt="Product Photo" class="mr-2 mb-2" style="max-width:100px;">`).join('')}
+                        </div>
+                        <p>Product Finish: ${product.finish}</p>
+                        <p>Product Size: ${product.Size}</p>
+                        <p>Product Quantity: ${product.quantity}</p>
+                        <p>Product Go-Down Number: ${product.godown}</p>
+                        <p>Product Room Number: ${product.room}</p>
+                        <p>Product Rack Number: ${product.rack}</p>
+                    `;
+    
+                savedProductsList.appendChild(listItem);
+    
+                newProductForm.reset();
+                document.getElementById('output').src = ''; // Reset the displayed image
+            });
+        });
+    </script>
+    
+    
+
+</body>
+
+</html>
