@@ -37,6 +37,12 @@ input,select,textarea{
         #progressBar {
             transition: width 0.5s ease-in-out; /* Added transition for smoother animation */
         }
+
+        #imagePreview {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -69,6 +75,7 @@ input,select,textarea{
                     <label>Upload Product Icon</label>
                     <input type="file" id="productIcon" name="productIcon" onchange="loadFile(event)" required
                         class="block w-full border-gray-300 p-1 pl-1 bg-white rounded-md shadow-sm focus:ring-blue focus:border-blue">
+                    <img id="imagePreview" src="#" alt="Preview" style="display: none;">
                 </div>
                 
                 <div class="mb-4 pt-4">
@@ -241,6 +248,12 @@ input,select,textarea{
 
         function updateProgress() {
             document.documentElement.style.setProperty('--step', currentStep);
+        }
+
+        function loadFile(event) {
+            const image = document.getElementById('imagePreview');
+            image.src = URL.createObjectURL(event.target.files[0]);
+            image.style.display = 'block';
         }
     </script>
 
